@@ -59,4 +59,8 @@ public class Vista {
         System.out.println(cadenaMelodias);
     }
 
+    public void mostrarValorElValorMonetario(double cadenaPrecio) {
+        System.out.println("El precio actual de la colección es de $" + cadenaPrecio);
+    }
+
 }

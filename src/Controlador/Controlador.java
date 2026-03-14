@@ -25,6 +25,9 @@ public class Controlador {
                 case 2:
                     mostrarMelodias();
                     break;
+                case 6:
+                    mostrarValorMonetario();
+                    break;
                 case 12:
                     System.out.println("ADIÓS.");
 
@@ -41,6 +44,11 @@ public class Controlador {
     public void mostrarMelodias() {
         String cadena = modelo.mostrarColeccion();
         vista.mostrarTodasLasMelodias(cadena);
+    }
+
+    public void mostrarValorMonetario() {
+        Double cadenaValor = modelo.calcularValorMonetario();
+        vista.mostrarValorElValorMonetario(cadenaValor);
     }
 
 }
