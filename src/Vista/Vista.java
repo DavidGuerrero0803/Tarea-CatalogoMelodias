@@ -75,7 +75,7 @@ public class Vista {
     }
 
     public void mostrarMelodiasDeCadaGenero(ArrayList<Melodia> canciones, String genero) {
-        System.out.println("\nEstas son todas las melodías de género: " + genero + "\n");
+        System.out.println("\nEstas son todas las melodías del género " + genero + ":\n");
         for (int i = 0; i < canciones.size(); i++) {
             System.out.println(canciones.get(i));
         }
@@ -88,6 +88,13 @@ public class Vista {
         String cadena2 = sc.nextLine();
 
         return cadena2;
+    }
+
+    public void mostrarMelodicasDeCadaCantante(ArrayList<Melodia> canciones, String cantante) {
+        System.out.println("\nEstas son todas las melodías del cantante " + cantante + ":\n");
+        for (int i = 0; i < canciones.size(); i++) {
+            System.out.println(canciones.get(i));
+        }
     }
 
 }

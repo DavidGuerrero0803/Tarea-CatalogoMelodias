@@ -86,6 +86,14 @@ public class CatalogoMelodias {
         return canciones;
     }
 
-
+    public ArrayList<Melodia> mostrarMelodiasCantante(String cantante) {
+        ArrayList<Melodia> canciones = new ArrayList<>();
+        for (Melodia melodia : melodias) {
+            if (cantante.equalsIgnoreCase(melodia.getCantante())) {
+                canciones.add(melodia);
+            }
+        }
+        return canciones;
+    }
 
 }

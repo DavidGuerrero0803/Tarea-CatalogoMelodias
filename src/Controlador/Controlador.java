@@ -41,8 +41,11 @@ public class Controlador {
                 case 10:
                     mostrarMelodiasDeUnGenero();
                     break;
+                case 11:
+                    mostrarMelodiasDeUnCantante();
+                    break;
                 case 12:
-                    System.out.println("ADIÓS.");
+                    System.out.println("\nADIÓS.");
 
             }
         } while (opcion != 12);
@@ -78,6 +81,12 @@ public class Controlador {
         String genero = vista.leeCadena("Género");
         ArrayList<Melodia> canciones = modelo.mostrarMelodiasGenero(genero);
         vista.mostrarMelodiasDeCadaGenero(canciones, genero);
+    }
+
+    public void mostrarMelodiasDeUnCantante() {
+        String cantante = vista.leeCadena("Cantante");
+        ArrayList<Melodia> canciones = modelo.mostrarMelodiasCantante(cantante);
+        vista.mostrarMelodicasDeCadaCantante(canciones, cantante);
     }
 
 }

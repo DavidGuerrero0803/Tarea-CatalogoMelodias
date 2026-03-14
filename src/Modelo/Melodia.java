@@ -132,6 +132,6 @@ public class Melodia {
                 + "\nGénero: " + genero
                 + "\nCantante: " + cantante
                 + "\nPrecio: " + precio
-                + "\nFormato: " + formato;
+                + "\nFormato: " + formato + "\n";
     }
 }
