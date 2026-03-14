@@ -41,7 +41,7 @@ public class Vista {
         System.out.println("3. Eliminar una melodía"); // Se pide nombre de la canción.
         System.out.println("4. Conocer datos de melodía"); // Se pide nombre de la canción.
         System.out.println("5. Corregir datos de melodía"); // Se pide nombre de la canción.
-        System.out.println("6. Mostrar valor monetario (total de la colección)"); // Suma de todos los precios.
+        System.out.println("6. Mostrar valor monetario de la colección"); // Suma de todos los precios.
         System.out.println("7. Conocer cuántos y cuáles cantantes tienen melodías"); // Cantantes: X cantidad y lista de cantantes.
         System.out.println("8. Mostrar melodías por género"); // Pop: 1, Rock: 2...
         System.out.println("9. Mostrar los géneros que abarca la colección"); // [Pop, Rock].
@@ -77,7 +77,7 @@ public class Vista {
     }
 
     public int modificarMelodia() {
-        System.out.println("Escoge el dato de la melodía que buscas corregir: ");
+        System.out.println("\nEscoge el dato de la melodía que buscas corregir: ");
         System.out.println("1. Nombre");
         System.out.println("2. Compositor");
         System.out.println("3. Año");
@@ -101,6 +101,33 @@ public class Vista {
 
     public void mostrarHashSet(HashSet hs) {
         System.out.println(hs);
+    }
+
+    public void mostrarListaDeCantantes(HashSet<String> hs) {
+        System.out.println("\nEn total hay " + hs.size() + " cantantes que tienen melodía:");
+        for (String cantante : hs) {
+            System.out.println(" -" + cantante);
+        }
+
+        System.out.println(" ");
+    }
+
+    public void mostrarConteoXGenero(HashMap<String, Integer> mapa) {
+        System.out.println("\nCantidad de melodías que hay por cada género:");
+        for (String genero : mapa.keySet()) {
+            int cantidad = mapa.get(genero);
+            System.out.println("Hay " + cantidad + " melodías del género " + genero);
+        }
+        System.out.println(" ");
+    }
+
+    public void mostrarListaDeGeneros(HashSet<String> hs) {
+        System.out.println("\nEn total hay " + hs.size() + " géneros en la colección.");
+        for(String genero : hs) {
+            System.out.println(" -" + genero);
+        }
+
+        System.out.println(" ");
     }
 
     public void mostrarMelodiasDeCadaGenero(ArrayList<Melodia> canciones, String genero) {

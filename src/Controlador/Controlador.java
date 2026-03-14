@@ -133,18 +133,18 @@ public class Controlador {
     }
 
     public void mostrarInfoCantantes() {
-        HashSet hs = modelo.contarTodosLosCantantes();
-        vista.mostrarHashSet(hs);
+        HashSet<String> hs = modelo.contarTodosLosCantantes();
+        vista.mostrarListaDeCantantes(hs);
     }
 
     public void mostrarMelodiasXGenero() {
-        HashMap hm = modelo.contarMelodiasXGenero();
-        vista.mostrarHashMap(hm);
+        HashMap<String, Integer> hm = modelo.contarMelodiasXGenero();
+        vista.mostrarConteoXGenero(hm);
     }
 
     public void mostrarGenerosDeColeccion() {
-        HashSet hs = modelo.contarTodosLosGeneros();
-        vista.mostrarHashSet(hs);
+        HashSet<String> hs = modelo.contarTodosLosGeneros();
+        vista.mostrarListaDeGeneros(hs);
     }
 
     public void mostrarMelodiasDeUnGenero() {
