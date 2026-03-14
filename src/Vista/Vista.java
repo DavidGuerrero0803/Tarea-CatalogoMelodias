@@ -3,6 +3,7 @@ package Vista;
 import Modelo.Melodia;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class Vista {
@@ -61,11 +62,15 @@ public class Vista {
     }
 
     public void mostrarValorElValorMonetario(double cadenaPrecio) {
-        System.out.println("El precio actual de la colección es de $" + cadenaPrecio);
+        System.out.println("\nEl precio actual de la colección es de $" + cadenaPrecio + "\n");
     }
 
     public void mostrarHashMap(HashMap hm) {
         System.out.println(hm);
+    }
+
+    public void mostrarHashSet(HashSet hs) {
+        System.out.println(hs);
     }
 
 }

@@ -2,6 +2,7 @@ package Modelo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class CatalogoMelodias {
     private ArrayList<Melodia> melodias;
@@ -62,6 +63,16 @@ public class CatalogoMelodias {
         }
 
         return mapa;
+    }
+
+    public HashSet contarTodosLosGeneros() {
+        HashSet<String> hs = new HashSet<>();
+
+        for (Melodia melodia : melodias) {
+            hs.add(melodia.getGenero());
+        }
+
+        return hs;
     }
 
 }
