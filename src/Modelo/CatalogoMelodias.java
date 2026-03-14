@@ -75,4 +75,17 @@ public class CatalogoMelodias {
         return hs;
     }
 
+    public ArrayList<Melodia> mostrarMelodiasGenero(String genero) {
+        ArrayList<Melodia> canciones = new ArrayList<>();
+        for (Melodia melodia : melodias) {
+            if (genero.equalsIgnoreCase(melodia.getGenero())) {
+                canciones.add(melodia);
+            }
+        }
+
+        return canciones;
+    }
+
+
+
 }

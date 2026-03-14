@@ -2,6 +2,7 @@ package Vista;
 
 import Modelo.Melodia;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -71,6 +72,22 @@ public class Vista {
 
     public void mostrarHashSet(HashSet hs) {
         System.out.println(hs);
+    }
+
+    public void mostrarMelodiasDeCadaGenero(ArrayList<Melodia> canciones, String genero) {
+        System.out.println("\nEstas son todas las melodías de género: " + genero + "\n");
+        for (int i = 0; i < canciones.size(); i++) {
+            System.out.println(canciones.get(i));
+        }
+    }
+
+    public String leeCadena(String cadena) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Ingresa el " + cadena);
+        String cadena2 = sc.nextLine();
+
+        return cadena2;
     }
 
 }

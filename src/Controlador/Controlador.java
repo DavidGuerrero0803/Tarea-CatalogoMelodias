@@ -4,6 +4,7 @@ import Modelo.CatalogoMelodias;
 import Modelo.Melodia;
 import Vista.Vista;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -37,6 +38,9 @@ public class Controlador {
                 case 9:
                     mostrarGenerosDeColeccion();
                     break;
+                case 10:
+                    mostrarMelodiasDeUnGenero();
+                    break;
                 case 12:
                     System.out.println("ADIÓS.");
 
@@ -68,6 +72,12 @@ public class Controlador {
     public void mostrarGenerosDeColeccion() {
         HashSet hs = modelo.contarTodosLosGeneros();
         vista.mostrarHashSet(hs);
+    }
+
+    public void mostrarMelodiasDeUnGenero() {
+        String genero = vista.leeCadena("Género");
+        ArrayList<Melodia> canciones = modelo.mostrarMelodiasGenero(genero);
+        vista.mostrarMelodiasDeCadaGenero(canciones, genero);
     }
 
 }
