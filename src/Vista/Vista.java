@@ -76,6 +76,21 @@ public class Vista {
         }
     }
 
+    public int modificarMelodia() {
+        System.out.println("Escoge el dato de la melodía que buscas corregir: ");
+        System.out.println("1. Nombre");
+        System.out.println("2. Compositor");
+        System.out.println("3. Año");
+        System.out.println("4. Género");
+        System.out.println("5. Cantante");
+        System.out.println("6. Precio");
+        System.out.println("7. Formato");
+        System.out.println("8. Salir");
+
+        Scanner sc = new Scanner(System.in);
+        return sc.nextInt();
+    }
+
     public void mostrarValorElValorMonetario(double cadenaPrecio) {
         System.out.println("\nEl precio actual de la colección es de $" + cadenaPrecio + "\n");
     }

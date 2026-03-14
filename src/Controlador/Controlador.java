@@ -7,6 +7,7 @@ import Vista.Vista;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Scanner;
 
 public class Controlador {
     private Vista vista;
@@ -34,6 +35,9 @@ public class Controlador {
                     break;
                 case 4:
                     consultarMelodia();
+                    break;
+                case 5:
+                    corregirMelodia();
                     break;
                 case 6:
                     mostrarValorMonetario();
@@ -81,6 +85,46 @@ public class Controlador {
         String nombre = vista.leeCadena("nombre de la canción");
         Melodia melodia = modelo.buscarMelodiaXNombre(nombre);
         vista.mostrarDatosDeMelodia(melodia);
+    }
+
+    public void corregirMelodia() {
+        String nombre = vista.leeCadena("nombre de la melodía a corregir");
+        Melodia melodia = modelo.buscarMelodiaXNombre(nombre);
+
+        if (melodia == null) {
+            System.out.println("\nNo se encontró la melodía.\n");
+        }
+
+        int opcion = vista.modificarMelodia();
+        Scanner sc = new Scanner(System.in);
+
+        switch (opcion) {
+            case 1:
+                melodia.setNombre(vista.leeCadena("nuevo nombre: "));
+                break;
+            case 2:
+                melodia.setCompositor(vista.leeCadena("nuevo compositor: "));
+                break;
+            case 3:
+                System.out.println("Ingresa el nuevo año: ");
+                melodia.setAnio(sc.nextInt());
+                break;
+            case 4:
+                melodia.setGenero(vista.leeCadena("nuevo género: "));
+                break;
+            case 5:
+                melodia.setCantante(vista.leeCadena("nuevo cantante: "));
+                break;
+            case 6:
+                System.out.println("Ingresa el nuevo precio: ");
+                melodia.setPrecio(sc.nextDouble());
+                break;
+            case 7:
+                melodia.setFormato(vista.leeCadena("nuevo formato: "));
+                break;
+            default:
+                System.out.println("\nCorrección cancelada.\n");
+        }
     }
 
     public void mostrarValorMonetario() {
