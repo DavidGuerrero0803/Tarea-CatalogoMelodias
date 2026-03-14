@@ -55,9 +55,6 @@ public class Vista {
      * @return la opción escogida por el usuario en el menú.
      */
     public int mostrarMenu() {
-        int op = 0;
-        Scanner sc = new Scanner(System.in);
-
         // Impresión del menú principal del programa.
         System.out.println("1. Ingresar melodía");
         System.out.println("2. Mostrar melodías");
@@ -73,7 +70,7 @@ public class Vista {
         System.out.println("12. Salir");
 
         // Captura y regresa la opción escogida por el usuario.
-        op = sc.nextInt();
+        int op = validarEntrada();
         return op;
     }
 
@@ -265,6 +262,26 @@ public class Vista {
         // Se captura la información y la regresa en otra cadena diferente.
         String nuevaCadena = sc.nextLine();
         return nuevaCadena;
+    }
+
+    /**
+     * validarEntrada() asegura que la opción ingresada en el menú sea un número válido.
+     * @return opción ingresada por el usuario.
+     */
+    private int validarEntrada() {
+        Scanner sc = new Scanner(System.in);
+
+        // Este bucle será infinito hasta que se ingrese una opción válida.
+        while (true) {
+            try {
+                return sc.nextInt();
+            } catch (Exception e) {
+                // Si el usuario ingresó una letra, muestra una advertencia.
+                System.out.println("\nDebes ingresar un número, no letras.");
+                System.out.print("Ingresa una opción [1-12]: ");
+                sc.nextLine();
+            }
+        }
     }
 
     /**
