@@ -39,6 +39,25 @@ public class CatalogoMelodias {
         return cadena;
     }
 
+    public Melodia buscarMelodiaXNombre(String nombre) {
+        for (Melodia melodia : melodias) {
+            if (melodia.getNombre().equalsIgnoreCase(nombre)) {
+                return melodia;
+            }
+        }
+
+        return null;
+    }
+
+    public boolean eliminarUnaMelodia(String nombre) {
+        Melodia melodia = buscarMelodiaXNombre(nombre);
+        if (melodia != null) {
+            return melodias.remove(melodia);
+        }
+
+        return false;
+    }
+
     public double calcularValorMonetario() {
         double sumaTotal = 0;
 

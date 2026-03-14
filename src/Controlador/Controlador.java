@@ -29,6 +29,12 @@ public class Controlador {
                 case 2:
                     mostrarMelodias();
                     break;
+                case 3:
+                    eliminarMelodia();
+                    break;
+                case 4:
+                    consultarMelodia();
+                    break;
                 case 6:
                     mostrarValorMonetario();
                     break;
@@ -63,6 +69,18 @@ public class Controlador {
     public void mostrarMelodias() {
         String cadena = modelo.mostrarColeccion();
         vista.mostrarTodasLasMelodias(cadena);
+    }
+
+    public void eliminarMelodia() {
+        String nombre = vista.leeCadena("nombre de la canción");
+        boolean bandera = modelo.eliminarUnaMelodia(nombre);
+        vista.confirmarBorradoMelodia(bandera);
+    }
+
+    public void consultarMelodia() {
+        String nombre = vista.leeCadena("nombre de la canción");
+        Melodia melodia = modelo.buscarMelodiaXNombre(nombre);
+        vista.mostrarDatosDeMelodia(melodia);
     }
 
     public void mostrarValorMonetario() {

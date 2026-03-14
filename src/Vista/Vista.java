@@ -62,6 +62,20 @@ public class Vista {
         System.out.println(cadenaMelodias);
     }
 
+    public void confirmarBorradoMelodia(boolean bandera) {
+        String cadena = bandera ? "\nSe ha borrado la melodía.\n" : "\nLa melodía no existe o no está bien escrita.\n";
+        System.out.println(cadena);
+    }
+
+    public void mostrarDatosDeMelodia(Melodia melodia) {
+        if (melodia != null) {
+            System.out.println("Has accedido a tu melodia a través de la canción " + melodia.getNombre());
+            System.out.println(melodia);
+        } else {
+            System.out.println("\nNo se encontró la melodía.\n");
+        }
+    }
+
     public void mostrarValorElValorMonetario(double cadenaPrecio) {
         System.out.println("\nEl precio actual de la colección es de $" + cadenaPrecio + "\n");
     }
