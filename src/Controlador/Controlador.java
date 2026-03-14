@@ -32,6 +32,9 @@ public class Controlador {
                 case 6:
                     mostrarValorMonetario();
                     break;
+                case 7:
+                    mostrarInfoCantantes();
+                    break;
                 case 8:
                     mostrarMelodiasXGenero();
                     break;
@@ -65,6 +68,11 @@ public class Controlador {
     public void mostrarValorMonetario() {
         Double cadenaValor = modelo.calcularValorMonetario();
         vista.mostrarValorElValorMonetario(cadenaValor);
+    }
+
+    public void mostrarInfoCantantes() {
+        HashSet hs = modelo.contarTodosLosCantantes();
+        vista.mostrarHashSet(hs);
     }
 
     public void mostrarMelodiasXGenero() {

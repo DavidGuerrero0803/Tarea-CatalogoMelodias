@@ -15,7 +15,7 @@ public class CatalogoMelodias {
         boolean bandera = true;
 
         for (Melodia melodia1 : melodias) {
-            if (melodia1.equals(melodias)) {
+            if (melodia1.equals(melodia)) {
                 bandera = false;
                 break;
             } else {
@@ -94,6 +94,16 @@ public class CatalogoMelodias {
             }
         }
         return canciones;
+    }
+
+    public HashSet contarTodosLosCantantes() {
+        HashSet<String> hs = new HashSet<>();
+
+        for (Melodia melodia : melodias) {
+            hs.add(melodia.getCantante());
+        }
+
+        return hs;
     }
 
 }
