@@ -4,6 +4,8 @@ import Modelo.CatalogoMelodias;
 import Modelo.Melodia;
 import Vista.Vista;
 
+import java.util.HashMap;
+
 public class Controlador {
     private Vista vista;
     private CatalogoMelodias modelo;
@@ -28,6 +30,9 @@ public class Controlador {
                 case 6:
                     mostrarValorMonetario();
                     break;
+                case 8:
+                    mostrarMelodiasXGenero();
+                    break;
                 case 12:
                     System.out.println("ADIÓS.");
 
@@ -49,6 +54,11 @@ public class Controlador {
     public void mostrarValorMonetario() {
         Double cadenaValor = modelo.calcularValorMonetario();
         vista.mostrarValorElValorMonetario(cadenaValor);
+    }
+
+    public void mostrarMelodiasXGenero() {
+        HashMap hm = modelo.contarMelodiasXGenero();
+        vista.mostrarHashMap(hm);
     }
 
 }

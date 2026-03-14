@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CatalogoMelodias {
     private ArrayList<Melodia> melodias;
@@ -45,6 +46,22 @@ public class CatalogoMelodias {
         }
 
         return sumaTotal;
+    }
+
+    public HashMap contarMelodiasXGenero() {
+        HashMap<String, Integer> mapa = new HashMap<>();
+
+        for (Melodia melodia : melodias) {
+            if(!mapa.containsKey(melodia.getGenero())) {
+                mapa.put(melodia.getGenero(), 1);
+            } else {
+                int valor = mapa.get(melodia.getGenero());
+                valor++;
+                mapa.put(melodia.getGenero(), valor);
+            }
+        }
+
+        return mapa;
     }
 
 }
