@@ -8,6 +8,9 @@ import java.util.HashSet;
  * La clase CatalaogoMelodias funciona como el Modelo de un patrón de diseño (MVC).
  * No tiene conocimiento de menús y de lectura de teclados.
  * Aquí se realizan los cálculos y filtraciones de información.
+ *
+ * @author David Guerrero
+ * @version 1.0
  */
 public class CatalogoMelodias {
     // Todos los atributos de Melodia, se guardan en un ArrayList de melodías.
@@ -37,7 +40,8 @@ public class CatalogoMelodias {
     //=======================================================================
 
     /**
-     * agregarMelodia() permite agregar una melodía a la colección (validando de que no existan duplicados).
+     * agregarMelodia() permite agregar una melodía a la colección.
+     * Asegura de que no existan melodías duplicadas.
      * @param melodia (objeto de tipo Melodia).
      * @return true si la melodía se agregó, false si es que ya existe en la colección.
      */

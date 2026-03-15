@@ -13,6 +13,9 @@ import java.util.Scanner;
  * Esta clase funciona como el Controlador en un patrón de diseño MVC.
  * Es el intermediario entre el Modelo y la Vista.
  * Recibe los datos de Vista y los pasa a Modelo para trabajar con ellos.
+ *
+ * @author David Guerrero
+ * @version 1.0
  */
 public class Controlador {
     // Como el Controlador es el intermediario entre el Modelo y la Vista,

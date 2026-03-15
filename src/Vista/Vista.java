@@ -11,6 +11,9 @@ import java.util.Scanner;
  * Esta clase funciona como la Vista en el patrón de diseño MVC.
  * Muestra información y captura lo que el usuario ingrese.
  * Aquí simplemente recibe datos y los envía al Controlador.
+ *
+ * @author David Guerrero
+ * @version 1.0
  */
 public class Vista {
 
@@ -82,14 +85,15 @@ public class Vista {
     public void insertarMelodia(boolean pudoAgregarse) {
         // Se mostrará una cadena con el resultado dependiendo del operador ternario.
         // ? = en caso de ser "true", mostrará un mensaje de confirmación de añadido.
-        // : = en caso de ser "false", te avisará el programa de que no es posible añadir la melodía.
+        // : = en caso de ser "false", avisará el programa de que no se añadió la melodía.
         String cadenaAgregadoMelodia =
-                pudoAgregarse ? "\nSe ha agregado una melodía nueva.\n" : "\nLa melodía ya está en la colección.\n";
+                pudoAgregarse ? "\nSe ha agregado una melodía nueva.\n" :
+                        "\nLa melodía ya está en la colección.\n";
         System.out.println(cadenaAgregadoMelodia);
     }
 
     /**
-     * mostrarTodasLasMelodias() muestra a través de una cadena de texto todas las melodías de la colección.
+     * mostrarTodasLasMelodias() muestra a través de una cadena todas las melodías de la colección.
      * Se utiliza para la opción [2].
      * @param cadenaMelodias (cadena de todas las melodías).
      */
@@ -105,9 +109,10 @@ public class Vista {
     public void confirmarBorradoMelodia(boolean pudoEliminarse) {
         // Se mostrará una cadena con el resultado dependiendo del operador ternario.
         // ? = en caso de ser "true", mostrará un mensaje de confirmación de borrarado.
-        // : = en caso de ser "false", te avisará el programa de que no es posible borrar la melodía.
+        // : = en caso de ser "false", te avisará el programa de que no pudo borrar la melodía.
         String cadenaMelodiaEliminada =
-                pudoEliminarse ? "\nSe ha borrado la melodía.\n" : "\nLa melodía no existe o no está bien escrita.\n";
+                pudoEliminarse ? "\nSe ha borrado la melodía.\n" :
+                        "\nLa melodía no existe o no está bien escrita.\n";
         System.out.println(cadenaMelodiaEliminada);
     }
 
@@ -119,17 +124,18 @@ public class Vista {
     public void mostrarDatosDeMelodia(Melodia melodia) {
         // Verifica si el objeto de tipo Melodia existe.
         if (melodia != null) {
-            // En caso de ser diferente de null, mostrará la información de la melodía a la que se accedió.
-            System.out.println("\nHas accedido a tu melodia a través de la canción " + melodia.getNombre() + "\n");
+            // Si es diferente de null, mostrará los datos de la melodía a la que se accedió.
+            System.out.println("\nHas accedido a tu melodia a través de la canción "
+                    + melodia.getNombre() + "\n");
             System.out.println(melodia);
         } else {
-            // Si la condición no se cumple, mostrará un mensaje de aviso de que no encontró la melodía.
+            // Si null, mostrará un mensaje de aviso de que no encontró la melodía.
             System.out.println("\nNo se encontró la melodía.\n");
         }
     }
 
     /**
-     * modificarMelodia() muestra otro menú para elegir qué atributo en específico se desea modificar.
+     * modificarMelodia() muestra otro menú para elegir qué atributo se desea modificar.
      * Se utiliza para la opción [5].
      * @return la opción escogida por el usuario en este submenú.
      */
@@ -151,7 +157,7 @@ public class Vista {
     }
 
     /**
-     * mostrarValorElValorMonetario() muestra a través de una cadena el valor monetario de la colección.
+     * mostrarValorElValorMonetario() muestra en una cadena el valor monetario de la colección.
      * Se utiliza para la opción [6].
      * @param cadenaPrecio (cadena del total de la suma de los precios de cada melodía).
      */
@@ -220,7 +226,8 @@ public class Vista {
      * @param melodiasFiltradasGenero (ArrayList con las melodías filtradas).
      * @param genero (género consultado).
      */
-    public void mostrarMelodiasDeCadaGenero(ArrayList<Melodia> melodiasFiltradasGenero, String genero) {
+    public void mostrarMelodiasDeCadaGenero(ArrayList<Melodia> melodiasFiltradasGenero,
+                                            String genero) {
         System.out.println("\nEstas son todas las melodías del género " + genero + ":\n");
 
         // Recorre el arreglo filtrado para mostrar individualmente cada melodía de ese género.
@@ -235,7 +242,8 @@ public class Vista {
      * @param melodiasFiltradasCantante (ArrayList con las melodías filtradas).
      * @param cantante (cantante consultado).
      */
-    public void mostrarMelodicasDeCadaCantante(ArrayList<Melodia> melodiasFiltradasCantante, String cantante) {
+    public void mostrarMelodicasDeCadaCantante(ArrayList<Melodia> melodiasFiltradasCantante,
+                                               String cantante) {
         System.out.println("\nEstas son todas las melodías del cantante " + cantante + ":\n");
 
         // Recorre el arreglo filtrado para mostrar individualmente cada melodía de ese cantante.

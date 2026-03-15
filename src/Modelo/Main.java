@@ -6,6 +6,9 @@ import Vista.Vista;
 /**
  * Clase Main donde se ejecuta el programa creando una instancia de cada elemento
  * para probar el correcto funcionamiento del patrón de diseño Modelo-Vista-Controlador.
+ *
+ * @author David Guerrero
+ * @version 1.0
  */
 public class Main {
     public static void main(String[] args) {

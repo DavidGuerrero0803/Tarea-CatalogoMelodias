@@ -5,6 +5,9 @@ import java.util.Objects;
 /**
  * La clase Melodia define lo que vendría siendo una melodía, contiene:
  * Nombre, Compositor, Año, Género, Cantante, Precio y Formato.
+ *
+ * @author David Guerrero
+ * @version 1.0
  */
 public class Melodia {
     // Todos los atributos que componen a una sola melodía.
@@ -43,7 +46,11 @@ public class Melodia {
      * @param precio (el precio por lo que se pagó la melodía).
      * @param formato (el formato en el que se encuentra, sea mp3, ogg, etcétera).
      */
-    public Melodia(String nombre, String compositor, int anio, String genero, String cantante, double precio, String formato) {
+    public Melodia(String nombre,
+                   String compositor,
+                   int anio, String genero,
+                   String cantante, double precio,
+                   String formato) {
         this.nombre = nombre;
         this.compositor = compositor;
         this.anio = anio;
