@@ -89,6 +89,7 @@ public class Controlador {
                     break;
                 case 12:
                     System.out.println("\nADIÓS.");
+                    break;
                 default:
                     System.out.println("\nIngresa una opción válida [1-12].\n");
             }

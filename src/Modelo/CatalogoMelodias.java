@@ -3,6 +3,7 @@ package Modelo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.stream.Collectors;
 
 /**
  * La clase CatalaogoMelodias funciona como el Modelo de un patrón de diseño (MVC).
@@ -46,29 +47,19 @@ public class CatalogoMelodias {
      * @return true si la melodía se agregó, false si es que ya existe en la colección.
      */
     public boolean agregarMelodia(Melodia melodia) {
-        // Boolean que funciona como bandera y que por default es true.
-        boolean esNuevaMelodia = true;
+        // Boolean que funciona como bandera.
+        // Se hace uso de un flujo combinado con anyMatch,
+        // este devolverá true si algún elemento cumple la condición del equals.
+        boolean esNuevaMelodia = melodias.stream().anyMatch(m -> m.equals(melodia));
 
-        // Recorre la colección buscando una melodía que sea igual.
-        for (Melodia melodia1 : melodias) {
-            // Mediante el equals, determina si la nueva melodía es igual a otra.
-            if (melodia1.equals(melodia)) {
-                // En caso de ser cierto, la melodía no es nueva, por lo que devuelve false.
-                esNuevaMelodia = false;
-                // Ya que se sabe el resultado de la búsqueda, esta se detiene.
-                break;
-            } else {
-                // Si ambas melodías son diferentes, entonces SÍ es una nueva melodía.
-                esNuevaMelodia = true;
-            }
-        }
-        // Cuando la condición sea true, la nueva melodía se añadirá a la ArrayList/colección.
-        if (esNuevaMelodia) {
+        // Si no ha habido una melodía duplicada, se añadirá entonces a la colección.
+        if (!esNuevaMelodia) {
             melodias.add(melodia);
+            // La bandera será true, indicando que la melodía es nueva.
+            return true;
         }
-
-        // Al final devuelve el resultado de las comparaciones.
-        return esNuevaMelodia;
+        // En caso de detectar que es una melodía duplicada, se devolverá un false.
+        return false;
     }
 
     /**
@@ -94,18 +85,15 @@ public class CatalogoMelodias {
      * @return la melodía (en caso de que exista), null si es que no se encuentra.
      */
     public Melodia buscarMelodiaXNombre(String nombre) {
-        // Recorre toda la colección de melodías.
-        for (Melodia melodia : melodias) {
-            // Busca el nombre de la melodía comparando nombres de la colección.
-            // equalsIgnoreCase() se encarga de ignorar mayúsculas y minúsculas.
-            if (melodia.getNombre().equalsIgnoreCase(nombre)) {
-                // Regresa la melodía (si es que se encontró).
-                return melodia;
-            }
-        }
-
-        // Si no se encontró la melodía por el nombre, regresará un null.
-        return null;
+        // Se regresará el resultado de lo que pase por el flujo.
+        return melodias.stream()
+                // El filtro sirve para encontrar la melodía por medio del nombre
+                // (ignorando de paso las mayúsculas y minúsculas).
+                .filter(m -> m.getNombre().equalsIgnoreCase(nombre))
+                // Si se encuentra, se posicionará como el primer elemento del stream.
+                .findFirst()
+                // Si no se encontró la melodía por el nombre, regresará un null.
+                .orElse(null);
     }
 
     /**
@@ -132,17 +120,12 @@ public class CatalogoMelodias {
      * @return total de la suma acumulada del valor monetario.
      */
     public double calcularValorMonetario() {
-        // Contador que inicia en 0.
-        double sumaTotal = 0;
-
-        // Recorre toda la colección de melodías.
-        for (Melodia melodia : melodias) {
-            // En cada iteración se suma el precio de una melodía con la otra.
-            sumaTotal = sumaTotal + melodia.getPrecio();
-        }
-
-        // Regresa la suma total de todos los precios.
-        return sumaTotal;
+        // Se regresará el resultado de lo que pase por el flujo.
+        return melodias.stream()
+                // mapToDouble transforma cada elemento del flujo a un tipo double.
+                .mapToDouble(Melodia::getPrecio)
+                // Todos los precios se suman para formar un total.
+                .sum();
     }
 
     /**
@@ -175,17 +158,13 @@ public class CatalogoMelodias {
      * @return HashSet con todos los géneros (sin duplicados).
      */
     public HashSet<String> contarTodosLosGeneros() {
-        // HashMap que alojará a todos los géneros identificados.
-        HashSet<String> hs = new HashSet<>();
-
-        // Recorre toda la colección de melodías.
-        for (Melodia melodia : melodias) {
-            // Se añade el género al HashSet (nativamente ignorará los repetidos).
-            hs.add(melodia.getGenero());
-        }
-
-        // Regresa el HashSet con todos los géneros identificados.
-        return hs;
+        // Se regresará el resultado de lo que pase por el flujo.
+        return melodias.stream()
+                // El map convertirá los elementos del flujo en géneros.
+                .map(Melodia::getGenero)
+                // Todos los géneros del flujo se guardarán en una colección HashSet
+                // (al tratarse de HashSet, nativamente ignorará los géneros repetidos).
+                .collect(Collectors.toCollection(HashSet::new));
     }
 
     /**
@@ -194,21 +173,13 @@ public class CatalogoMelodias {
      * @return arreglo con los resultados de la búsqueda.
      */
     public ArrayList<Melodia> mostrarMelodiasGenero(String genero) {
-        // ArrayList donde se alojarán las melodías del género a buscar.
-        ArrayList<Melodia> listaMelodiasDeUnGenero = new ArrayList<>();
-
-        // Recorre toda la colección de melodías.
-        for (Melodia melodia : melodias) {
-            // Busca el género de la melodía comparando géneros de la colección.
-            // equalsIgnoreCase() se encarga de ignorar mayúsculas y minúsculas.
-            if (genero.equalsIgnoreCase(melodia.getGenero())) {
-                // Aquellas melodías de un género en particular se guardan en el arreglo.
-                listaMelodiasDeUnGenero.add(melodia);
-            }
-        }
-
-        // Regresa el ArrayList de todas las melodías de un género en específico.
-        return listaMelodiasDeUnGenero;
+        // Se regresará el resultado de lo que pase por el flujo.
+        return melodias.stream()
+                // El filtro sirve para encontrar melodías por medio del género especificado
+                // (ignorando de paso las mayúsculas y minúsculas).
+                .filter(m -> m.getGenero().equalsIgnoreCase(genero))
+                // Las melodías con los resultados de la búsqueda se guardarán en un ArrayList.
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**
@@ -217,39 +188,27 @@ public class CatalogoMelodias {
      * @return arreglo con los resultados de la búsqueda.
      */
     public ArrayList<Melodia> mostrarMelodiasCantante(String cantante) {
-        // ArrayList donde se alojarán las melodías del género a buscar.
-        ArrayList<Melodia> listaMelodiasDeUnCantante = new ArrayList<>();
-
-        // Recorre toda la colección de melodías.
-        for (Melodia melodia : melodias) {
-            // Busca el cantante de la melodía comparando cantantes de la colección.
-            // equalsIgnoreCase() se encarga de ignorar mayúsculas y minúsculas.
-            if (cantante.equalsIgnoreCase(melodia.getCantante())) {
-                // Aquellas melodías de un cantante en particular se guardan en el arreglo.
-                listaMelodiasDeUnCantante.add(melodia);
-            }
-        }
-
-        // Regresa el ArrayList de todas las melodías de un cantante en específico.
-        return listaMelodiasDeUnCantante;
+        // Se regresará el resultado de lo que pase por el flujo.
+        return melodias.stream()
+                // El filtro sirve para encontrar melodías por medio del cantante especificado
+                // (ignorando de paso las mayúsculas y minúsculas).
+                .filter(m -> m.getCantante().equalsIgnoreCase(cantante))
+                // Las melodías con los resultados de la búsqueda se guardarán en un ArrayList.
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**
      * contarTodosLosCantantes() identifica todos los cantantes únicos en la colección.
      * @return HashSet con todos los cantantes (sin duplicados).
      */
-    public HashSet contarTodosLosCantantes() {
-        // HashMap que alojará a todos los cantantes identificados.
-        HashSet<String> hs = new HashSet<>();
-
-        // Recorre toda la colección de melodías.
-        for (Melodia melodia : melodias) {
-            // Se añade el cantante al HashSet (nativamente ignorará los repetidos).
-            hs.add(melodia.getCantante());
-        }
-
-        // Regresa el HashSet con todos los cantantes identificados.
-        return hs;
+    public HashSet<String> contarTodosLosCantantes() {
+        // Se regresará el resultado de lo que pase por el flujo.
+        return melodias.stream()
+                // El map convertirá los elementos del flujo en cantantes.
+                .map(Melodia::getCantante)
+                // Todos los géneros del flujo se guardarán en una colección HashSet
+                // (al tratarse de HashSet, nativamente ignorará los géneros repetidos).
+                .collect(Collectors.toCollection(HashSet::new));
     }
 
 }
