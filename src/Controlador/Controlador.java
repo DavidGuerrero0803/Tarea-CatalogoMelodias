@@ -54,44 +54,19 @@ public class Controlador {
 
             // Dependiendo de lo que se ingresó, el usuario accederá a una opción u otra.
             switch (opcion) {
-                case 1:
-                    insertarNuevaMelodia();
-                    break;
-                case 2:
-                    mostrarMelodias();
-                    break;
-                case 3:
-                    eliminarMelodia();
-                    break;
-                case 4:
-                    consultarMelodia();
-                    break;
-                case 5:
-                    corregirMelodia();
-                    break;
-                case 6:
-                    mostrarValorMonetario();
-                    break;
-                case 7:
-                    mostrarInfoCantantes();
-                    break;
-                case 8:
-                    mostrarMelodiasXGenero();
-                    break;
-                case 9:
-                    mostrarGenerosDeColeccion();
-                    break;
-                case 10:
-                    mostrarMelodiasDeUnGenero();
-                    break;
-                case 11:
-                    mostrarMelodiasDeUnCantante();
-                    break;
-                case 12:
-                    System.out.println("\nADIÓS.");
-                    break;
-                default:
-                    System.out.println("\nIngresa una opción válida [1-12].\n");
+                case 1 -> insertarNuevaMelodia();
+                case 2 -> mostrarMelodias();
+                case 3 -> eliminarMelodia();
+                case 4 -> consultarMelodia();
+                case 5 -> corregirMelodia();
+                case 6 -> mostrarValorMonetario();
+                case 7 -> mostrarInfoCantantes();
+                case 8 -> mostrarMelodiasXGenero();
+                case 9 -> mostrarGenerosDeColeccion();
+                case 10 -> mostrarMelodiasDeUnGenero();
+                case 11 -> mostrarMelodiasDeUnCantante();
+                case 12 -> System.out.println("\nADIÓS.");
+                default -> System.out.println("\nIngresa una opción válida [1-12].\n");
             }
 
             // Mientras que el usuario no ingrese la última opción, podrá seguir navegando por el menú.
@@ -172,31 +147,20 @@ public class Controlador {
 
         // Dependiendo de la opción ingresada del submenú, podrá modificar el atributo de la melodía.
         switch (opcion) {
-            case 1:
-                melodia.setNombre(vista.leerCadena("nuevo nombre: "));
-                break;
-            case 2:
-                melodia.setCompositor(vista.leerCadena("nuevo compositor: "));
-                break;
-            case 3:
+            case 1 -> melodia.setNombre(vista.leerCadena("nuevo nombre: "));
+            case 2 -> melodia.setCompositor(vista.leerCadena("nuevo compositor: "));
+            case 3 -> {
                 System.out.println("Ingresa el nuevo año: ");
                 melodia.setAnio(sc.nextInt());
-                break;
-            case 4:
-                melodia.setGenero(vista.leerCadena("nuevo género: "));
-                break;
-            case 5:
-                melodia.setCantante(vista.leerCadena("nuevo cantante: "));
-                break;
-            case 6:
+                }
+            case 4 -> melodia.setGenero(vista.leerCadena("nuevo género: "));
+            case 5 -> melodia.setCantante(vista.leerCadena("nuevo cantante: "));
+            case 6 -> {
                 System.out.println("Ingresa el nuevo precio: ");
                 melodia.setPrecio(sc.nextDouble());
-                break;
-            case 7:
-                melodia.setFormato(vista.leerCadena("nuevo formato: "));
-                break;
-            default:
-                System.out.println("\nCorrección cancelada.\n");
+                }
+            case 7 -> melodia.setFormato(vista.leerCadena("nuevo formato: "));
+            default -> System.out.println("\nCorrección cancelada.\n");
         }
     }
 
@@ -254,8 +218,14 @@ public class Controlador {
         // Solicita al modelo el arreglo filtrado.
         ArrayList<Melodia> melodiasFiltradas = modelo.mostrarMelodiasGenero(genero);
 
-        // La vista ahora pide el arreglo filtrado y el género para mostrar el listado las melodías.
-        vista.mostrarMelodiasDeCadaGenero(melodiasFiltradas, genero);
+        // Usamos un flujo para verificar si la lista está vacía.
+        if (melodiasFiltradas.isEmpty()) {
+            System.out.println("No se encontraron melodías para el género: " + genero);
+        } else {
+            // La vista ahora pide el arreglo filtrado y el género para mostrar el listado las melodías.
+            vista.mostrarMelodiasDeCadaGenero(melodiasFiltradas, genero);
+        }
+
     }
 
     /**
