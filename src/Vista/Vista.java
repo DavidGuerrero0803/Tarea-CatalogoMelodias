@@ -175,11 +175,11 @@ public class Vista {
         // Se utiliza .size() para conocer el tamaño del HashSet.
         System.out.println("\nEn total hay " + hs.size() + " cantantes que tienen melodía:");
 
-        // Recorre el HashSet con los cantantes.
-        for (String cantante : hs) {
-            // Muestra individualmente aquellos cantantes que tienen melodía.
-            System.out.println(" -" + cantante);
-        }
+        // Recorre el HashSet con los cantantes, usando esta vez
+        // un forEach de la colección con una lambda.
+        hs.forEach(cantante -> {
+                System.out.println(" -" + cantante);
+        });
 
         System.out.println(" ");
     }
@@ -192,12 +192,12 @@ public class Vista {
     public void mostrarConteoXGenero(HashMap<String, Integer> mapa) {
         System.out.println("\nCantidad de melodías que hay por cada género:");
 
-        // Recorre sobre las claves del mapa para obtener los valores.
-        for (String genero : mapa.keySet()) {
-            // Toma la cantidad de melodías que hubo de cada género para luego mostrarlo.
-            int cantidadMelodiasXGenero = mapa.get(genero);
-            System.out.println("Hay " + cantidadMelodiasXGenero + " melodías del género " + genero);
-        }
+        // El HashMap se recorre con un forEach, recibiendo los parámetros llave (género) y valor (cantidad).
+        mapa.forEach((genero, cantidad) -> {
+            // nota: usar Lambda permite accede a la llave y valor a la vez sin tener que usar mapa.get(llave).
+            System.out.println("Hay " + cantidad + " melodías del género " + genero);
+        });
+
         System.out.println(" ");
     }
 
@@ -211,11 +211,11 @@ public class Vista {
         // Se utiliza .size() para conocer el tamaño del HashSet.
         System.out.println("\nEn total hay " + hs.size() + " géneros en la colección.");
 
-        // Recorre el HashSet con los géneros.
-        for(String genero : hs) {
-            // Muestra individualmente cada género existente en la colección.
+        // Recorre el HashSet con los géneros, usando esta vez
+        // un forEach de la colección con una lambda.
+        hs.forEach(genero -> {
             System.out.println(" -" + genero);
-        }
+        });
 
         System.out.println(" ");
     }
@@ -231,9 +231,9 @@ public class Vista {
         System.out.println("\nEstas son todas las melodías del género " + genero + ":\n");
 
         // Recorre el arreglo filtrado para mostrar individualmente cada melodía de ese género.
-        for (int i = 0; i < melodiasFiltradasGenero.size(); i++) {
-            System.out.println(melodiasFiltradasGenero.get(i));
-        }
+        melodiasFiltradasGenero.forEach(melodia -> {
+            System.out.println(melodia);
+        });
     }
 
     /**
@@ -247,9 +247,9 @@ public class Vista {
         System.out.println("\nEstas son todas las melodías del cantante " + cantante + ":\n");
 
         // Recorre el arreglo filtrado para mostrar individualmente cada melodía de ese cantante.
-        for (int i = 0; i < melodiasFiltradasCantante.size(); i++) {
-            System.out.println(melodiasFiltradasCantante.get(i));
-        }
+        melodiasFiltradasCantante.forEach(melodia -> {
+            System.out.println(melodia);
+        });
     }
 
     //=======================================================================
